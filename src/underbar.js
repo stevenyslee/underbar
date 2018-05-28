@@ -342,9 +342,21 @@
   // The arguments for the original function are passed after the wait
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
-  _.delay = function(func, wait) {
-    let now = Date().getTime();
-    return func;
+  _.delay = function(func, wait, arg1, arg2) {
+    // let now = new Date().getTime();
+    // let stopTime = now + wait;
+    // while( stopTime > now ){
+    //   now = new Date().getTime();
+    // }
+    // return func;
+    return setTimeout(func, wait, arg1, arg2);
+    // var start = new Date().getTime();
+    // for (var i = 0; i < 1e7; i++) {
+    //   if ((new Date().getTime() - start) > wait){
+    //     return func(arg1, arg2);
+    //     break;
+    //   }
+    // }
   };
 
 
