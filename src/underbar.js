@@ -323,6 +323,17 @@
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+    let cache = {};
+    return function(arg1, arg2) {
+      let result;
+      if( cache[arg1 + ' ' + arg2] === undefined ){
+        result = func(arg1, arg2);
+        cache[arg1 + ' ' + arg2] = result;
+      } else {
+        result = cache[arg1 + ' ' + arg2];
+      }
+      return result;
+    };
   };
 
   // Delays a function for the given number of milliseconds, and then calls
