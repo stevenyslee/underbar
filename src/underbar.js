@@ -102,6 +102,30 @@
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array, isSorted, iterator) {
+    let uniqueArray = []; 
+    let uniqueIterator = [];
+    iterator = iterator || _.identity;
+
+    for( let i = 0; i < array.length; i++ ){
+      let hasDuplicate = false;
+      for( let j = 0; j < uniqueArray.length; j++ ){
+        if( array[i] === uniqueArray[j] ){
+          hasDuplicate = true;
+          break;
+        }
+      }
+      for( let j = 0; j < uniqueIterator.length; j++ ){
+        if( iterator(array[i]) === uniqueIterator[j] ){
+          hasDuplicate = true;
+          break;
+        }
+      }
+      if( !hasDuplicate ){
+        uniqueArray.push(array[i]);
+        uniqueIterator.push(iterator(array[i]));
+      }
+    }
+    return uniqueArray;
   };
 
 
