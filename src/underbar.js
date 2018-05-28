@@ -186,7 +186,7 @@
     let total = accumulator;
     for( let i = 0; i < collection.length; i++ ){
       if( hasAccumulator === undefined ){
-        hasAccumulator = true;
+        hasAccumulator = false;
         total = collection[0];
         continue;
       } 
@@ -199,6 +199,13 @@
   _.contains = function(collection, target) {
     // TIP: Many iteration problems can be most easily expressed in
     // terms of reduce(). Here's a freebie to demonstrate!
+    if( typeof collection === 'object' ){
+      for( let key in collection ){
+        if( collection[key] === target ){
+          return true;
+        }
+      }
+    }
     return _.reduce(collection, function(wasFound, item) {
       if (wasFound) {
         return true;
